@@ -1,0 +1,5 @@
+pytest==8.4.1
+python-dotenv==1.1.1
+requests==2.32.4
+Faker==37.4.0
+pydantic==2.11.7

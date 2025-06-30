@@ -1,0 +1,97 @@
+### Python ###
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py.cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Environments
+.env
+.envrc
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+.spyderproject
+.spyproject
+.ropeproject
+
+# Debugging and profiling
+*.prof
+*.py.lock
+
+# PyCharm (убрано комментирование)
+.idea/
+
+# VS Code (убрано комментирование)
+.vscode/
+
+### Project Specific ###
+# Конфигурационные файлы с чувствительными данными
+secrets.ini
+config.ini
+*.key
+*.pem
+
+# Файлы специфичные для API тестирования
+responses/
+test_data/
+
+# Логи тестов
+test_logs/
+*.log
+
+# Временные файлы
+temp/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~
+~$*
+
+# Системные файлы
+.DS_Store
+Thumbs.db
