@@ -3,6 +3,12 @@ import config
 
 
 def register_user(email:str, password:str, age:int):
+    """
+      Функиця для авторегистрации пользователя
+      передаем почту, пароль и возраст
+      Вызывается в [tests/conftest.py]
+    """
+
     data = {
         "email": email,
         "password": password,
