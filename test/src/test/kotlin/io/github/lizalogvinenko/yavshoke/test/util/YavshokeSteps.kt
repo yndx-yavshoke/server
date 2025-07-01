@@ -45,13 +45,4 @@ class YavshokeSteps(private val client: YavshokeClient) {
             .toString(Charsets.UTF_8)
             .substring(0, 20)
     }
-
-    companion object {
-
-        fun create(baseUrl: String = YavshokeClient.DEFAULT_BASE_URL): YavshokeSteps {
-            return YavshokeSteps(
-                client = YavshokeClient.create(baseUrl = baseUrl)
-            )
-        }
-    }
 }

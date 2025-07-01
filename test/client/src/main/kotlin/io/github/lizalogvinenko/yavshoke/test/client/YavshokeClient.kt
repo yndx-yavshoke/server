@@ -47,8 +47,8 @@ class YavshokeClient(private val client: HttpClient) {
     }
 
 
-    suspend fun getUser(bearerToken: String?): HttpResponse{
-        return client.get("/user/me"){
+    suspend fun getUser(bearerToken: String?): HttpResponse {
+        return client.get("/user/me") {
             if (bearerToken != null) {
                 bearerAuth(bearerToken)
             }
