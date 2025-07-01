@@ -5,6 +5,7 @@ WORKDIR /usr/src/app
 RUN apt-get update && apt-get install -y \
     postgresql-client \
     curl \
+    bash \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy package.json
@@ -16,18 +17,18 @@ RUN bun install
 # Copy source code
 COPY . .
 
-# Copy experiments.json (will be overridden by volume mount in production)
+# Copy experiments.json
 COPY experiments.json ./
 
-# Expose port
+COPY start.sh /usr/src/app/start.sh
+RUN chmod +x /usr/src/app/start.sh
+WORKDIR /usr/src/app
+
+
 EXPOSE 3000
 
-# Health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
     CMD curl -f http://localhost:3000/health || exit 1
 
-# Start script that waits for DB and runs migrations
-COPY start.sh ./
-RUN chmod +x start.sh
+CMD ["./start.sh"]
 
-CMD ["./start.sh"] 
