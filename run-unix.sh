@@ -117,7 +117,7 @@ fi
 
 # Check if Docker daemon is running
 if ! docker info &> /dev/null; then
-    log_error "❌ Docker daemon is not running"
+    log_error " Docker daemon is not running"
     log_error "Please start Docker and try again"
     exit 1
 fi
@@ -194,11 +194,11 @@ if [[ $? -eq 0 ]]; then
     # Show helpful information after successful 'up' command
     if [[ "$ACTION" == "up" && "$DETACH_FLAG" == "-d" ]]; then
         echo ""
-        log "🌐 Services are running in the background"
-        log "📱 Server: http://localhost:${SERVER_PORT:-3000}"
-        log "🗄️  Database: localhost:${POSTGRES_PORT:-5432}"
-        log "📋 View logs: ./run-unix.sh logs"
-        log "🛑 Stop services: ./run-unix.sh down"
+        log "Services are running in the background"
+        log " Server: http://localhost:${SERVER_PORT:-3000}"
+        log " Database: localhost:${POSTGRES_PORT:-5432}"
+        log "View logs: ./run-unix.sh logs"
+        log "Stop services: ./run-unix.sh down"
     fi
 else
     log_error "❌ Command failed with exit code $?"
