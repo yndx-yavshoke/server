@@ -12,10 +12,3 @@ def get_token():
     response_json = response.json() 
     return response_json.get('token')
 
-
-#@pytest.fixture
-#def auth_token():
- #   user_data = {...}  # ваши данные для входа
- #   response = requests.post(f'{Urls.BASE_URL}{Endpoints.user_login}', data=user_data)
-  #  response_json = response.json()
-  #  return response_json.get('token')
