@@ -46,3 +46,17 @@ ssl/
 
 # Misc
 .DS_Store
+
+# Test_Api
+
+venv/
+test_web/
+test_api/.pytest_cache/
+test_api/__pycache__/
+.pytest_cache
+*.py[cod]
+*.pyo
+*.pyd
+.idea/
+package-lock.json
+package.json
