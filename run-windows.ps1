@@ -26,7 +26,7 @@ function Write-ColorOutput($ForegroundColor) {
 }
 
 function Show-Help {
-    Write-ColorOutput $Blue "🐳 Docker Compose Helper for Windows"
+    Write-ColorOutput $Blue "Docker Compose Helper for Windows"
     Write-Host ""
     Write-Host "Usage: .\run-windows.ps1 [OPTIONS] [ACTION]"
     Write-Host ""
@@ -43,7 +43,7 @@ function Show-Help {
     Write-Host "  -Detach   - Run in background"
     Write-Host "  -Help     - Show this help"
     Write-Host ""
-    Write-Host "Examples:"
+    Write-Host "samples:"
     Write-Host "  .\run-windows.ps1                    # Start services"
     Write-Host "  .\run-windows.ps1 -Build -Detach     # Build and start in background"
     Write-Host "  .\run-windows.ps1 down               # Stop services"
@@ -58,9 +58,9 @@ if ($Help) {
 # Check if Docker is installed and running
 try {
     docker --version | Out-Null
-    Write-ColorOutput $Green "✅ Docker is installed"
+    Write-ColorOutput $Green "Docker is installed"
 } catch {
-    Write-ColorOutput $Red "❌ Docker is not installed or not in PATH"
+    Write-ColorOutput $Red "Docker is not installed or not in PATH"
     Write-Host "Please install Docker Desktop for Windows from https://www.docker.com/products/docker-desktop"
     exit 1
 }
@@ -68,15 +68,15 @@ try {
 # Check if docker-compose is available
 try {
     docker-compose --version | Out-Null
-    Write-ColorOutput $Green "✅ Docker Compose is available"
+    Write-ColorOutput $Green "Docker Compose is available"
 } catch {
     try {
         docker compose version | Out-Null
-        Write-ColorOutput $Green "✅ Docker Compose (plugin) is available"
+        Write-ColorOutput $Green "Docker Compose (plugin) is available"
         # Use docker compose (plugin) instead of docker-compose
         $env:COMPOSE_COMMAND = "docker compose"
     } catch {
-        Write-ColorOutput $Red "❌ Docker Compose is not available"
+        Write-ColorOutput $Red "Docker Compose is not available"
         exit 1
     }
 }
@@ -85,13 +85,13 @@ if (-not $env:COMPOSE_COMMAND) {
     $env:COMPOSE_COMMAND = "docker-compose"
 }
 
-# Check if .env file exists, if not create from example
+# Check if .env file exists, if not create from sample
 if (-not (Test-Path ".env")) {
-    if (Test-Path ".env.example") {
-        Write-ColorOutput $Yellow "⚠️  No .env file found, copying from .env.example"
-        Copy-Item ".env.example" ".env"
+    if (Test-Path ".env.sample") {
+        Write-ColorOutput $Yellow "No .env file found, copying from .env.sample"
+        Copy-Item ".env.sample" ".env"
     } else {
-        Write-ColorOutput $Yellow "⚠️  No .env file found, creating default one"
+        Write-ColorOutput $Yellow "No .env file found, creating default one"
         @"
 # Database Configuration
 POSTGRES_DB=serverdb
@@ -107,7 +107,7 @@ NODE_ENV=production
 DATABASE_URL=postgresql://postgres:your-secure-password@db:5432/serverdb
 JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
 "@ | Out-File -FilePath ".env" -Encoding UTF8
-        Write-ColorOutput $Yellow "📝 Please edit .env file with your configuration"
+        Write-ColorOutput $Yellow "Please edit .env file with your configuration"
     }
 }
 
@@ -115,11 +115,11 @@ JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
 $buildFlag = if ($Build) { "--build" } else { "" }
 $detachFlag = if ($Detach) { "-d" } else { "" }
 
-Write-ColorOutput $Blue "🚀 Running Docker Compose action: $Action"
+Write-ColorOutput $Blue "Running Docker Compose action: $Action"
 
 switch ($Action.ToLower()) {
     "up" {
-        Write-ColorOutput $Green "🟢 Starting services..."
+        Write-ColorOutput $Green "Starting services..."
         if ($buildFlag -and $detachFlag) {
             Invoke-Expression "$env:COMPOSE_COMMAND --env-file .env up $buildFlag $detachFlag"
         } elseif ($buildFlag) {
@@ -131,35 +131,35 @@ switch ($Action.ToLower()) {
         }
     }
     "down" {
-        Write-ColorOutput $Yellow "🟡 Stopping services..."
+        Write-ColorOutput $Yellow "Stopping services..."
         Invoke-Expression "$env:COMPOSE_COMMAND --env-file .env down"
     }
     "logs" {
-        Write-ColorOutput $Blue "📋 Viewing logs..."
+        Write-ColorOutput $Blue "Viewing logs..."
         Invoke-Expression "$env:COMPOSE_COMMAND --env-file .env logs -f"
     }
     "build" {
-        Write-ColorOutput $Blue "🔨 Building images..."
-        Invoke-Expression "$env:COMPOSE_COMMAND --env-file .env build"
-    }
+		Write-ColorOutput $Blue "Building images..."
+		Invoke-Expression "$env:COMPOSE_COMMAND --env-file .env build"
+	}
     "restart" {
-        Write-ColorOutput $Yellow "🔄 Restarting services..."
+        Write-ColorOutput $Yellow "Restarting services..."
         Invoke-Expression "$env:COMPOSE_COMMAND --env-file .env restart"
     }
     "ps" {
-        Write-ColorOutput $Blue "📊 Listing services..."
+        Write-ColorOutput $Blue "Listing services..."
         Invoke-Expression "$env:COMPOSE_COMMAND --env-file .env ps"
     }
     default {
-        Write-ColorOutput $Red "❌ Unknown action: $Action"
+        Write-ColorOutput $Red "Unknown action: $Action"
         Show-Help
         exit 1
     }
 }
 
 if ($LASTEXITCODE -eq 0) {
-    Write-ColorOutput $Green "✅ Command completed successfully"
+    Write-ColorOutput $Green "Command completed successfully"
 } else {
-    Write-ColorOutput $Red "❌ Command failed with exit code $LASTEXITCODE"
+    Write-ColorOutput $Red "Command failed with exit code $LASTEXITCODE"
     exit $LASTEXITCODE
 } 

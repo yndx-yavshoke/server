@@ -1,0 +1,6 @@
+EXIST_URL = "http://localhost:3000/exist"
+USER_DATA = "http://localhost:3000/user/me"
+UPDATE_NAME = "http://localhost:3000/user/name"
+HEALTH = "http://localhost:3000/health"
+REGISTER_URL = "http://localhost:3000/auth/register"
+LOGIN_URL = "http://localhost:3000/auth/login"
