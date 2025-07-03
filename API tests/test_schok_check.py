@@ -1,10 +1,8 @@
-# notstandartjson
-# standjsonexsist
-# nonexist
+import random
+
 import requests
 import pytest
-import random
-from Models import registration, ShokCheck, headers, mailGenerator
+from Models import registration, ShokCheck, headers, mailGenerator, randString
 from conf import link
 
 
@@ -23,9 +21,13 @@ def testWithoutRealUser(userData):
     assert req.status_code == 200
     assert req.json()["exist"] == False
 
+@pytest.mark.parametrize('userData', [randString(random.randint(5, 25)) for _ in range(10)])
+def testWithNotEmail(userData):
+    data = ShokCheck(userData).json()
+    req = requests.post(link + 'exist', data=data, headers=headers())
+    assert req.status_code == 400
 
-
-@pytest.mark.parametrize('json', [{}, registration()[0], {"select *": "abcdbca"}])
+@pytest.mark.parametrize('json', [{}, registration()[0], {"select *": "abcdbca"}, '', "{email: mail@mai.ru}"])
 def testWithBrokenJSON(json):
     req = requests.post(link + 'exist', data=json, headers=headers())
     assert req.status_code == 400
