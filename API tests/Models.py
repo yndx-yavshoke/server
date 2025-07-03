@@ -45,11 +45,19 @@ def headers(token=None):
         return { 'Authorization': f'Bearer {token}', 'Content-Type': 'application/json' }
     return {'Content-Type': 'application/json'}
 
+def randString(size: int):
+    return ''.join([random.choice(string.ascii_letters) for _ in
+                        range(size)])
+def mailGenerator():
+    return f'{randString(random.randint(3,25))}@{randString(random.randint(2,6))}.{randString(random.randint(2,3))}'
+
+def passwordGenerator():
+    return randString(random.randint(6,48))
+
+
 def registration():
-    email = f'{''.join([random.choice(string.ascii_letters) for _ in
-                        range(10)])}@ya.ru'
-    password = ''.join([random.choice(string.ascii_letters) for _ in
-                        range(10)])
+    email = mailGenerator()
+    password = passwordGenerator()
     age = random.randint(0, 100)
     data = Registration(email, password, age).json()
     reg_response = requests.post(link + 'auth/register', data=data, headers=headers())
