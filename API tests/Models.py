@@ -52,7 +52,7 @@ def mailGenerator():
     return f'{randString(random.randint(3,25))}@{randString(random.randint(2,6))}.{randString(random.randint(2,3))}'
 
 def passwordGenerator():
-    return randString(random.randint(6,48))
+    return randString(random.randint(6,20))
 
 
 def registration():

@@ -1,7 +1,6 @@
 import requests
 import pytest
 import random
-import string
 from conf import link
 from Models import headers, NameChange, registration, randString
 
