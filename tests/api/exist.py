@@ -1,27 +1,16 @@
 import requests 
 
+from tests.utils.generators import generate_valid_user_payload
 from tests.variables.const import EXIST_URL
 
 # Отправка запроса на ручку
 # Отправляются данные существующего пользователя
-def exist_user():
+def exist():
     url = EXIST_URL
     payload = {
-        "email": "test@removespread.ru",
-        "password": "Qwerty123"
+        "email": generate_valid_user_payload()["email"]
     }
-
-    response = requests.post(url, json = payload)
-    return response.json()
-
-# Отправка запроса на ручку
-# Отправляются данные несуществующего пользователя
-def non_exist_user():
-    url = EXIST_URL
-    payload = {
-        "email": "imnotexistactually@removespread.ru",
-        "password": "Qwerty123"
-    }
-
-    response = requests.post(url, json = payload)
-    return response.json()
+    request = requests.post(url, json = payload)
+    data = request.json()
+    
+    return data
