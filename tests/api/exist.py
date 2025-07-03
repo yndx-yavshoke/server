@@ -5,12 +5,11 @@ from tests.variables.const import EXIST_URL
 
 # Отправка запроса на ручку
 # Отправляются данные существующего пользователя
-def exist():
+def exist(email):
     url = EXIST_URL
     payload = {
-        "email": generate_valid_user_payload()["email"]
+        "email": email
     }
     request = requests.post(url, json = payload)
-    data = request.json()
-    
-    return data
+
+    return request
