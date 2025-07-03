@@ -2,27 +2,20 @@ import pytest
 import requests
 
 from tests.variables.const import EXIST_URL
+from tests.api.exist import exist
 
 def test_exist_user():
-    url = EXIST_URL
-    payload = {
-        "email": "test@removespread.ru"
-    }
-    response = requests.post(url, json = payload)
+    request = exist("v@removespread.ru")
 
-    # Все то, что выше - нужно вынести в какую-нибудь функцию
-    # Нужно рефакторить, понимание придет со временем
-    assert response.status_code == 200
-    data = response.json
-    assert data["exist"] is True
+    assert request.status_code == 200
 
-def test_exist_user():
-    url = EXIST_URL
-    payload = {
-        "email": "imnotexist@removespread.ru"
-    }
+    data = request.json()
+    assert "exist" in data and data["exist"] is True
 
-    response = requests.post(url, json = payload)
-    assert response.status_code == 200
-    data = response.json
-    assert data["exist"] is False
+def test_not_exist_user():
+    request = exist("notexist@removespread.ru")
+
+    assert request.status_code == 200
+
+    data = request.json()
+    assert "exist" in data and data["exist"] is False
