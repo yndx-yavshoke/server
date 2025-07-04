@@ -58,6 +58,16 @@ services:
     tty: true
     networks:
       - app-network
+  test-runner:
+    build:
+      context: ./tests
+    container_name: test-runner
+    depends_on:
+      - server
+    networks:
+      - app-network
+    tty: true
+    stdin_open: true
 
 volumes:
   postgres_data:
