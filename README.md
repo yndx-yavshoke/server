@@ -89,3 +89,48 @@ docker-compose logs -f
 # Остановка сервисов
 docker-compose down
 ```
+
+# YavsAPI Test Project
+
+## Описание
+
+Проект для автотестирования публичного API https://api.yavshok.ru. В тестах проверяются существование пользователя, логин, изменение имени и возраста через открытые эндпоинты.
+
+## Стек
+- Python 3.8+
+- requests
+- pytest
+
+## Быстрый старт
+1. Клонируйте репозиторий и перейдите в папку проекта.
+2. (Рекомендуется) создайте виртуальное окружение:
+   ```bash
+   python -m venv venv
+   # Linux/Mac:
+   source venv/bin/activate
+   # Windows:
+   venv\Scripts\activate
+   ```
+3. Установите зависимости:
+   ```bash
+   pip install requests pytest
+   ```
+4. Запустите тесты:
+   ```bash
+   pytest tests/
+   ```
+
+## Структура
+- `utils/` — вспомогательные модули для работы с API и проверки ответов
+- `tests/` — тестовые сценарии
+
+## Пример запуска
+```bash
+pytest tests/test_main.py
+```
+
+---
+
+**Важно:**
+- Для тестов нужен доступ к https://api.yavshok.ru
+- Тестовые данные для логина и PATCH-запросов уже заданы в коде.
