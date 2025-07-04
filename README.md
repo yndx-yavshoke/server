@@ -74,7 +74,7 @@ chmod +x run-unix.sh
 .\run-windows.ps1 -Help # Справка по опциям
 ```
 
-### Ручной запуск через Docker Compose
+### Ручной запуск через Docker
 
 ```bash
 # Запуск в фоновом режиме
@@ -88,4 +88,12 @@ docker-compose logs -f
 
 # Остановка сервисов
 docker-compose down
+```
+
+### Тесты
+
+ Запуск всех тестов
+
+```bash
+docker exec test-runner pytest
 ```
