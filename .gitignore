@@ -46,3 +46,9 @@ ssl/
 
 # Misc
 .DS_Store
+
+# Игнорировать всё в tests/api-tests, кроме src
+/tests/api-tests/*
+!/tests/api-tests/src/
+!tests/api-tests/pom.xml
+/tests/api-tests/src/**/target/
