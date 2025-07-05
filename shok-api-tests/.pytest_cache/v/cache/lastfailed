@@ -1,0 +1,11 @@
+{
+  "change_name.py::test_invalid_name_change": true,
+  "change_name.py::test_valid_name_variations[NormalName]": true,
+  "change_name.py::test_valid_name_variations[\\u0418\\u043c\\u044f\\u041d\\u0430\\u0420\\u0443\\u0441\\u0441\\u043a\\u043e\\u043c]": true,
+  "change_name.py::test_valid_name_variations[name-with-hyphen]": true,
+  "change_name.py::test_valid_name_variations[123Numbers]": true,
+  "change_name.py::test_valid_name_variations[CamelCaseName]": true,
+  "change_name.py::test_name_variations[A-422]": true,
+  "test_user.py::test_get_current_user": true,
+  "test_user.py::test_update_username": true
+}
