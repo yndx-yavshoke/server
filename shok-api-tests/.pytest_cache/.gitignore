@@ -1,5 +1,5 @@
 # Created by pytest automatically.
-*вот пример тестов регистрации. import requests
+
 import uuid
 
 BASE_URL = "http://localhost:3000/auth/register"
@@ -41,5 +41,5 @@ def test_wrong_password():
     }
 
     response = requests.post(BASE_URL, json=payload)
-    assert response.status_code == 422 Напиши код чтобы проверял сценарии: возраст больше 99 (выше допустимого), возраст 0, некорректный имейл, 
+    assert response.status_code == 422
 
