@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+*.pyo
+*.log
+.idea/
+.vscode/
+.env
+.venv
+htmlcov/
+*.html
