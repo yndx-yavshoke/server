@@ -7,25 +7,22 @@ load_dotenv()
 
 @pytest.fixture(scope="session")
 def api_base_url():
-    url = os.getenv('API_BASE_URL')
-    if not url:
-        raise RuntimeError("API_BASE_URL is not set in environment variables")
-    return url
+    return os.getenv('API_BASE_URL')
 
 @pytest.fixture(scope="session")
 def api_username():
-    username = os.getenv('API_USERNAME')
-    if not username:
-        raise RuntimeError("API_USERNAME is not set in environment variables")
-    return username
+    return os.getenv('API_USERNAME')
 
 @pytest.fixture(scope="session")
 def api_password():
-    password = os.getenv('API_PASSWORD')
-    if not password:
-        raise RuntimeError("API_PASSWORD is not set in environment variables")
-    return password
+    return os.getenv('API_PASSWORD')
 
 @pytest.fixture
 def client(api_base_url):
     return ApiClient(api_base_url)
+
+@pytest.fixture(autouse=True)
+def print_docstring(request):
+    doc = request.function.__doc__
+    if doc:
+        print(f"\n{doc.strip()}\n")
