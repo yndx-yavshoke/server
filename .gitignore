@@ -46,3 +46,5 @@ ssl/
 
 # Misc
 .DS_Store
+.idea
+*.pyc
