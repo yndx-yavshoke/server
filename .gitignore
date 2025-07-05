@@ -46,3 +46,8 @@ ssl/
 
 # Misc
 .DS_Store
+
+# My Ignores
+.idea/
+*/.gradle
+*/build
