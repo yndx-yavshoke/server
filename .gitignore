@@ -46,3 +46,117 @@ ssl/
 
 # Misc
 .DS_Store
+
+gitignore# Зависимости
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Переменные окружения
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Логи
+logs
+*.log
+
+# Docker
+docker-compose.override.yml
+
+# IDE и редакторы
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Python (для тестов)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Виртуальные окружения Python
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Pytest
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+
+# MacOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+
+# Временные файлы
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+
+# Базы данных
+*.db
+*.sqlite
+*.sqlite3
+
+# Сертификаты
+*.pem
+*.key
+*.crt
+
+# Архивы
+*.zip
+*.tar.gz
+*.rar
+
+# Кеш
+.cache/
+
+start.sh
+Dockerfile
+.gitignore
+run-windows.ps1

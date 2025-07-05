@@ -28,6 +28,7 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
 
 # Start script that waits for DB and runs migrations
 COPY start.sh ./
+RUN sed -i 's/\r$//' start.sh
 RUN chmod +x start.sh
 
-CMD ["./start.sh"] 
+ENTRYPOINT ["bash", "./start.sh"]
